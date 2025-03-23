@@ -29,6 +29,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Address</th>
                             <th scope="col">Mobile</th>
+                            <th scope="col">Gender</th>
                             <th scope="col">Option</th>
                             </tr>
                         </thead>
@@ -54,6 +55,9 @@
                                         <td><?php echo $name ?></td>
                                         <td><?php echo $address ?></td>
                                         <td><?php echo $mobile ?></td>
+                                        <td><?php echo isset($row['gender']) ? $row['gender'] : 'N/A'; ?></td>
+
+
 
                                         <td>
                                         <button class="btn btn-success"> <a href='edit.php?edit=<?php echo $uid ?>' class="text-light"> Edit </a> </button> &nbsp;
