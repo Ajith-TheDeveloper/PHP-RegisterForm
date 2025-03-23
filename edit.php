@@ -11,15 +11,21 @@ $uid = $row['id'];
 $name = $row['name'];
 $address = $row['address'];
 $mobile = $row['mobile'];
-$gender = $row['gender'];
+$gender = isset($row['gender']) ? $row['gender'] : '';
+$subscription = $row['subscription'];
+$agree_terms = $row['agree_terms'];
+$is_student = $row['is_student'];
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $mobile = $_POST['mobile'];
-    $gender = $_POST['gender']; 
+    $gender = isset($_POST['gender']) ? $_POST['gender'] : ''; 
+    $subscription = $_POST['subscription'];
+    $agree_terms = isset($_POST['agree_terms']) ? 1 : 0;
+    $is_student = $_POST['is_student'];
 
-    $sql = "UPDATE student SET name='$name', address='$address', mobile='$mobile', gender='$gender' WHERE id='$edit'";
+    $sql = "UPDATE student SET name='$name', address='$address', mobile='$mobile', gender='$gender', subscription='$subscription', agree_terms='$agree_terms', is_student='$is_student' WHERE id='$edit'";
 
     if (mysqli_query($connection, $sql)) {
         echo '<script> location.replace("index.php")</script>';
@@ -64,12 +70,28 @@ if (isset($_POST['submit'])) {
                             </div>
 
                             <div class="form-group">
-                                <label>Gender</label><br>
+                            <label>Gender</label><br>
                                 <input type="radio" name="gender" value="Male" <?php if ($gender == 'Male') echo 'checked'; ?>> Male
                                 <input type="radio" name="gender" value="Female" <?php if ($gender == 'Female') echo 'checked'; ?>> Female
                                 <input type="radio" name="gender" value="Other" <?php if ($gender == 'Other') echo 'checked'; ?>> Other
                                 <input type="radio" name="gender" value="Prefer not to say" <?php if ($gender == 'Prefer not to say') echo 'checked'; ?>> Prefer not to say
                             </div>
+
+                            <div class="form-group">
+                                <label>Are you a student?</label><br>
+                                <input type="radio" name="is_student" value="Yes" required> Yes
+                                <input type="radio" name="is_student" value="No"> No
+                            </div>
+
+                            <label>Subscription Plan</label>
+            <select name="subscription" class="form-control">
+                <option value="Free" <?php if($subscription == 'Free') echo 'selected'; ?>>Free</option>
+                <option value="Basic" <?php if($subscription == 'Basic') echo 'selected'; ?>>Basic</option>
+                <option value="Premium" <?php if($subscription == 'Premium') echo 'selected'; ?>>Premium</option>
+            </select>
+
+            <label>Agree to Terms & Conditions</label>
+            <input type="checkbox" name="agree_terms" <?php if ($agree_terms) echo 'checked'; ?>>
 
                             <br/>
                             <input type="submit" class="btn btn-primary" name="submit" value="Update">

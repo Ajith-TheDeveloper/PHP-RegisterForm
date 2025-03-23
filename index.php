@@ -30,6 +30,9 @@
                             <th scope="col">Address</th>
                             <th scope="col">Mobile</th>
                             <th scope="col">Gender</th>
+                            <th scope="col">Are you <br> student</th>
+                            <th scope="col">Subscription</th>
+                            <th scope="col">Terms </br> & Conditions</th>
                             <th scope="col">Option</th>
                             </tr>
                         </thead>
@@ -56,6 +59,9 @@
                                         <td><?php echo $address ?></td>
                                         <td><?php echo $mobile ?></td>
                                         <td><?php echo isset($row['gender']) ? $row['gender'] : 'N/A'; ?></td>
+                                        <td><?php echo isset($row['is_student']) ? $row['is_student'] : 'N/A'; ?></td>
+                                        <td><?php echo ($row['subscription']) ? $row['subscription'] : 'N/A'; ?></td>
+                                        <td><?php echo ($row['agree_terms']) ? 'Yes' : 'No'; ?></td>
 
 
 
